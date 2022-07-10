@@ -28,12 +28,68 @@ THEN I am again presented with current and future conditions for that city -->
 </head>
 
 <body>
-<header>
-    <h1>Weather Dashboard</h1>
-</header>
-<main>
+    <header class="text-center">
+        <h1>Weather Dashboard</h1>
+    </header>
+    <main>
+        <!--main container-->
+        <section class="container-fluid">
+            <!-- Main Row - big box-->
+            <section class="row">
+                <!-- city-search column -->
+                <section id="city-search" class="col-4">
+                    <h2>Search for a city:</h2>
+                    <input type="text" class="col-12" placeholder="City to search" />
+                    <button id="btnSearch" class="btn btn-primary col-12">Search</button>
+                    <div>city 1</div>
+                    <div>city 2</div>
+                    <div>city 1</div>
+                    <div>city 2</div>
+                    <div>city 1</div>
+                    <div>city 2</div>
 
-</main>
+                </section>
+                <!-- Weater details column -->
+                <section id="weather-info" class="col-8">
+                    <!-- Current weather -->
+                    <section class="col-12 border">
+                        <h2 id="current_city">Current</h2>
+                        <div id="current_temp">Temp: </div>
+                        <div id="current_wind">wind</div>
+                        <div id="current_humidity">humidity</div>
+                        <div id="current_UV">UV index</div>
+                    </section>
+
+                    <!-- 5 day forecast -->
+                    <section class="col-12">
+                        <section class="row">
+                            <h3 >
+                                5-Day Forecast:
+                            </h3>
+                            <div class="col" id="day1">
+                                day 1
+                            </div>
+                            <div class="col" id="day2">
+                                day 2
+                            </div>
+                            <div class="col" id="day3">
+                                day 3
+                            </div>
+                            <div class="col" id="day4">
+                                day 4
+                            </div>
+                            <div class="col" id="day5">
+                                day 5
+                            </div>
+
+                        </section>
+
+                    </section>
+
+                </section>
+            </section>
+        </section>
+    </main>
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
