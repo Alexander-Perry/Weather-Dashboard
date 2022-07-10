@@ -40,11 +40,22 @@ function getWeather(lat, lon) {
             if (response.ok) {
                 response.json().then(data => {
                     // Current Weather
-                    $(current_city).append('<img src="http://openweathermap.org/img/wn/' + data.current.weather[0].icon + '.png" alt="current weather icon" />')
-                    $(current_temp).html('Temp: ' + data.current.temp + "°C");
-                    $(current_wind).html('Wind: ' + data.current.wind_speed + 'kph');
-                    $(current_humidity).html('Humidity: ' + data.current.humidity + '%');
-                    $(current_UV).html('UV Index: ' + data.current.uvi);
+                    $("#current_city").append('<img src="http://openweathermap.org/img/wn/' + data.current.weather[0].icon + '.png" alt="current weather icon" />')
+                    $("#current_temp").html(data.current.temp);
+                    $("#current_wind").html(data.current.wind_speed);
+                    $("#current_humidity").html(data.current.humidity);
+                    $("#current_UV").html(data.current.uvi);
+                    switch (true) {
+                        case (data.current.uvi <= 2):
+                            $("#current_UV").removeClass("bg-warning bg-danger").addClass("bg-success");
+                            break;
+                        case (data.current.uvi >= 2 && data.current.uvi < 6):
+                            $("#current_UV").removeClass("bg-danger bg-success").addClass("bg-warning");
+                            break;
+                        case (data.current.uvi >= 6):
+                            $("#current_UV").removeClass("bg-success bg-warning").addClass("bg-danger");
+                            break;
+                    };
 
                     // 5 Day forecast
                     // date, icon, temp, wind, humidity, 
@@ -54,7 +65,7 @@ function getWeather(lat, lon) {
                             "<ul><li><h4>" + moment.unix(data.daily[index + 1].dt).format("DD/MM/YYYY") + "</h4></li>" +
                             '<li><img src="http://openweathermap.org/img/wn/' + icon + '.png" alt = "weather icon" /></li>' +
                             "<li>Temp: " + data.daily[index + 1].temp.day + "°C</li>" +
-                            "<li>Wind: " + data.daily[index + 1].wind_speed + "kph</li>" +
+                            "<li>Wind: " + data.daily[index + 1].wind_speed + "km/h</li>" +
                             "<li>Humidity: " + data.daily[index + 1].humidity + "%</li></ul>"
                         );
                     })

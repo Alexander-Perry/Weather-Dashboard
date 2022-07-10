@@ -28,7 +28,7 @@ THEN I am again presented with current and future conditions for that city -->
 </head>
 
 <body>
-    <header class="text-center">
+    <header class="text-center bg-primary bg-gradient text-light">
         <h1>Weather Dashboard</h1>
     </header>
     <main>
@@ -37,28 +37,31 @@ THEN I am again presented with current and future conditions for that city -->
             <!-- Main Row - big box-->
             <section class="row">
                 <!-- city-search column -->
-                <section id="city-search" class="col-3">
+                <section id="city-search" class="col-2">
                     <h2>Search for a city:</h2>
                     <input id="cityInput" type="text" class="col-12" placeholder="City to search" />
                     <button id="btnSearch" class="btn btn-primary col-12">Search</button>
                     <hr>
                     <!-- Columns/container for city history -->
+        
                     <Section id="searchHistory" class="col-12">
                         <!-- data from localstorage loads here -->
                     </Section>
                         <!-- clear history button - triggers confirmation prompt -->
-                    <button id="clearHistory" class="btn btn-light col-12">Clear History</button>
+                        <section class="row justify-content-center  py-4">
+                    <button id="clearHistory" class="btn btn-danger col-6 ">Clear History</button>
                 </section>
+            </section>
                 <!-- Weater details column -->
-                <section id="weather-info" class="col-9">
+                <section id="weather-info" class="col-10">
                     <!-- Current weather -->
                     <section class="col-12 border">
                         <h2 id="current_city">Current</h2>
                         <ul>
-                            <li id="current_temp">Temp: </li>
-                            <li id="current_wind">wind: </li>
-                            <li id="current_humidity">Humidity: </li>
-                            <li id="current_UV">UV index</li>
+                            <li>Temp: <span id="current_temp"></span>°C</li>
+                            <li>wind: <span id="current_wind"></span>km/h</li>
+                            <li>Humidity: <span id="current_humidity"></span>%</li>
+                            <li>UV index: <span id="current_UV" class="btn"></span></li>
                         </ul>
                     </section>
 
@@ -68,11 +71,11 @@ THEN I am again presented with current and future conditions for that city -->
                             5-Day Forecast:
                         </h3>
                         <section class="row">
-                            <div class="col day bg-dark text-light x-2"></div>
-                            <div class="col day bg-dark text-light x-2"></div>
-                            <div class="col day bg-dark text-light x-2"></div>
-                            <div class="col day bg-dark text-light x-2"></div>
-                            <div class="col day bg-dark text-light x-2"></div>
+                            <div class="col day bg-secondary text-light"></div>
+                            <div class="col day bg-secondary text-light"></div>
+                            <div class="col day bg-secondary text-light"></div>
+                            <div class="col day bg-secondary text-light"></div>
+                            <div class="col day bg-secondary text-light"></div>
                         </section>
                     </section>
                 </section>
