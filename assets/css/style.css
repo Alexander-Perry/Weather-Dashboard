@@ -1,4 +1,12 @@
+.day{
+    margin:2px;
+}
 
-.card {
-width:20%;
+ul li{
+    list-style-type:none;
+}
+
+button {
+    margin-top:5px;
+    margin-bottom:5px;
 }
