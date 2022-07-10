@@ -3,18 +3,23 @@
 // getGeoCode function
 // args: city - from inputbox
 // runs getWeather function on success
+// saveLocal with the city name listed in the response
 function getGeoCode(city) {
     const apiURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=1&appid=1b06c75812b8caa0f23e09c99756195a";
     fetch(apiURL)
         .then(function (response) {
             if (response.ok) {
                 response.json().then(function (data) {
+                    // Alert and exit function if city not found
+                    if (data.length == 0) {
+                        alert("City: '" + city + "' not found");
+                        return;
+                    };
                     let lat = data[0].lat;
                     let lon = data[0].lon;
                     // Run getWeather function
-                    console.log("geocode")
-                    console.log(data);
                     $(current_city).html(data[0].name);
+                    saveLocal(data[0].name);
                     getWeather(lat, lon);
                 });
             } else {
@@ -30,7 +35,6 @@ function getGeoCode(city) {
 // Forecast: index[0] is current day
 function getWeather(lat, lon) {
     const apiURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly,alerts&units=metric&appid=1b06c75812b8caa0f23e09c99756195a";
-    console.log('getweather', lat, lon);
     fetch(apiURL)
         .then(response => {
             if (response.ok) {
@@ -41,14 +45,10 @@ function getWeather(lat, lon) {
                     $(current_wind).html('Wind: ' + data.current.wind_speed + 'kph');
                     $(current_humidity).html('Humidity: ' + data.current.humidity + '%');
                     $(current_UV).html('UV Index: ' + data.current.uvi);
-                    console.log("weatherdata");
-                    console.log(data);
 
                     // 5 Day forecast
                     // date, icon, temp, wind, humidity, 
                     $(".day").each(function (index) {
-                        console.log(index);
-                        console.log(data.daily[index + 1].dt);
                         let icon = data.daily[index + 1].weather[0].icon;
                         $(this).html(
                             "<ul><li><h4>" + moment.unix(data.daily[index + 1].dt).format("DD/MM/YYYY") + "</h4></li>" +
@@ -62,16 +62,6 @@ function getWeather(lat, lon) {
             } else alert("Error getting weather data");
         })
 };
-
-//Search button handler.
-$("#btnSearch").on("click", function () {
-    const city = $("#cityInput").val();
-    console.log(city);
-    //save to local storage
-    saveLocal(city);
-    // run geocode function => weather function
-    getGeoCode(city);
-});
 
 // save to local storage function 
 // Checks if the city exists in the localhistory already. Adds if not and then reloads the front-end data. 
@@ -108,5 +98,24 @@ function loadLocal() {
         });
     };
 };
-// run the localstorage load on page-load 
+
+//Search button handler.
+$("#btnSearch").on("click", function () {
+    const city = $("#cityInput").val();
+    if (city == "") {
+        alert('Please enter a city to search');
+        return;
+    };
+    // run geocode function => weather function
+    getGeoCode(city);
+});
+
+// Clear the localstorage/search history
+$("#clearHistory").on("click", function () {
+    if (confirm("Are you sure you want to clear the history?")){
+    localStorage.removeItem("Weather-Dashboard");
+        $("#searchHistory").html("");
+    };
+});
+// run the localstorage load on page-load
 loadLocal();

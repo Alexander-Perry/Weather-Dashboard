@@ -4,6 +4,8 @@
 
 ul li{
     list-style-type:none;
+    margin-top: 1px;
+    margin-bottom: 1px;
 }
 
 button {
