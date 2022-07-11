@@ -15,7 +15,7 @@
 
 <body>
     <header class="text-center text-light">
-        <h1>Weather Dashboard</h1>
+        <h1 class="heading">Weather Dashboard</h1>
     </header>
     <main>
         <!--main container-->
@@ -23,8 +23,8 @@
             <!-- Main Row - big box-->
             <section class="row">
                 <!-- city-search column -->
-                <section id="city-search" class="col-2">
-                    <h2>Search for a city:</h2>
+                <section id="city-search" class="col-12 col-md-4 col-lg-2">
+                    <h2>Search for a City:</h2>
                     <input id="cityInput" type="text" class="col-12" placeholder="City to search" />
                     <button id="btnSearch" class="btn btn-primary col-12">Search</button>
                     <hr>
@@ -34,12 +34,12 @@
                         <!-- data from localstorage loads here -->
                     </Section>
                     <!-- clear history button - triggers confirmation prompt -->
-                    <section class="row justify-content-center  py-4">
+                    <section class="row justify-content-center py-4">
                         <button id="clearHistory" class="btn btn-danger col-6 ">Clear History</button>
                     </section>
                 </section>
                 <!-- Weater details column -->
-                <section id="weather-info" class="col-10">
+                <section id="weather-info" class="col-12 col-md-8 col-lg-10">
                     <!-- Current weather -->
                     <section class="col-12 border">
                         <h2 id="current_city" class="ms-2">Current</h2>
@@ -54,12 +54,12 @@
                         <h3>
                             5-Day Forecast:
                         </h3>
-                        <section class="row d-flex justify-content-evenly">
-                            <div class="day col-2 text-light"></div>
-                            <div class="day col-2 text-light"></div>
-                            <div class="day col-2 text-light"></div>
-                            <div class="day col-2 text-light"></div>
-                            <div class="day col-2 text-light"></div>
+                        <section class="row d-flex text-center justify-content-center justify-content-lg-evenly">
+                            <div class="day col-4  col-md-4  col-lg-2   text-light"></div>
+                            <div class="day col-4  col-md-4  col-lg-2   text-light"></div>
+                            <div class="day col-4  col-md-4  col-lg-2   text-light"></div>
+                            <div class="day col-4  col-md-4  col-lg-2   text-light"></div>
+                            <div class="day col-4  col-md-4  col-lg-2   text-light"></div>
                         </section>
                     </section>
                 </section>
