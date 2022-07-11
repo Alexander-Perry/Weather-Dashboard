@@ -40,7 +40,12 @@ function getWeather(lat, lon) {
             if (response.ok) {
                 response.json().then(data => {
                     // Current Weather
-                    $("#current_city").append(moment.unix(data.current.dt).format(" (DD/MM/YYYY)") + '<img src="https://openweathermap.org/img/wn/' + data.current.weather[0].icon + '.png" alt="current weather icon" />')
+                    console.log(data);
+                    let currentTime = moment.unix(data.current.dt).tz(data.timezone).format(" (DD/MM/YYYY)");
+                    console.log(data.current.dt);
+                    console.log(data.timezone);
+                    console.log (currentTime);
+                    $("#current_city").append(currentTime + '<img src="https://openweathermap.org/img/wn/' + data.current.weather[0].icon + '.png" alt="current weather icon" />')
                     $("#current_temp").html(data.current.temp);
                     $("#current_wind").html(data.current.wind_speed);
                     $("#current_humidity").html(data.current.humidity);
@@ -61,8 +66,9 @@ function getWeather(lat, lon) {
                     // date, icon, temp, wind, humidity, 
                     $(".day").each(function (index) {
                         let icon = data.daily[index + 1].weather[0].icon;
+                        let forecastDate = moment.unix(data.daily[index + 1].dt).tz(data.timezone).format("DD/MM/YYYY");
                         $(this).html(
-                            "<h4 class='my-2'>" + moment.unix(data.daily[index + 1].dt).format("DD/MM/YYYY") + "</h4>" +
+                            "<h4 class='my-2'>" + forecastDate + "</h4>" +
                             '<img src="https://openweathermap.org/img/wn/' + icon + '.png" alt = "weather icon" />' +
                             "<div class='my-2'>Temp: " + data.daily[index + 1].temp.day + "°C</div>" +
                             "<div class='my-2'>Wind: " + data.daily[index + 1].wind_speed + "km/h</div>" +
