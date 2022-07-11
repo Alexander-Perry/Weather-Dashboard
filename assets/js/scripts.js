@@ -5,7 +5,7 @@
 // runs getWeather function on success
 // saveLocal with the city name listed in the response
 function getGeoCode(city) {
-    const apiURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=1&appid=1b06c75812b8caa0f23e09c99756195a";
+    const apiURL = "https://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=1&appid=1b06c75812b8caa0f23e09c99756195a";
     fetch(apiURL)
         .then(function (response) {
             if (response.ok) {
@@ -40,7 +40,7 @@ function getWeather(lat, lon) {
             if (response.ok) {
                 response.json().then(data => {
                     // Current Weather
-                    $("#current_city").append(moment.unix(data.current.dt).format(" (DD/MM/YYYY)") + '<img src="http://openweathermap.org/img/wn/' + data.current.weather[0].icon + '.png" alt="current weather icon" />')
+                    $("#current_city").append(moment.unix(data.current.dt).format(" (DD/MM/YYYY)") + '<img src="https://openweathermap.org/img/wn/' + data.current.weather[0].icon + '.png" alt="current weather icon" />')
                     $("#current_temp").html(data.current.temp);
                     $("#current_wind").html(data.current.wind_speed);
                     $("#current_humidity").html(data.current.humidity);
@@ -63,7 +63,7 @@ function getWeather(lat, lon) {
                         let icon = data.daily[index + 1].weather[0].icon;
                         $(this).html(
                             "<h4 class='my-2'>" + moment.unix(data.daily[index + 1].dt).format("DD/MM/YYYY") + "</h4>" +
-                            '<img src="http://openweathermap.org/img/wn/' + icon + '.png" alt = "weather icon" />' +
+                            '<img src="https://openweathermap.org/img/wn/' + icon + '.png" alt = "weather icon" />' +
                             "<div class='my-2'>Temp: " + data.daily[index + 1].temp.day + "°C</div>" +
                             "<div class='my-2'>Wind: " + data.daily[index + 1].wind_speed + "km/h</div>" +
                             "<div class='my-2'>Humidity: " + data.daily[index + 1].humidity + "%</div>"
