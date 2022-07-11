@@ -40,11 +40,7 @@ function getWeather(lat, lon) {
             if (response.ok) {
                 response.json().then(data => {
                     // Current Weather
-                    console.log(data);
                     let currentTime = moment.unix(data.current.dt).tz(data.timezone).format(" (DD/MM/YYYY)");
-                    console.log(data.current.dt);
-                    console.log(data.timezone);
-                    console.log (currentTime);
                     $("#current_city").append(currentTime + '<img src="https://openweathermap.org/img/wn/' + data.current.weather[0].icon + '.png" alt="current weather icon" />')
                     $("#current_temp").html(data.current.temp);
                     $("#current_wind").html(data.current.wind_speed);
