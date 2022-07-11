@@ -3,7 +3,9 @@ header{
 }
 
 .day{
-    margin:2px;
+    margin: 2px;
+    padding-left: 2px;
+    padding-right: 2px;
     background: #274050;
 }
 
