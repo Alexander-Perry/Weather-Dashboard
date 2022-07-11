@@ -18,7 +18,7 @@ function getGeoCode(city) {
                     let lat = data[0].lat;
                     let lon = data[0].lon;
                     // Run getWeather function
-                    $(current_city).html(data[0].name);
+                    $("#current_city").html(data[0].name);
                     saveLocal(data[0].name);
                     getWeather(lat, lon);
                 });
@@ -40,7 +40,7 @@ function getWeather(lat, lon) {
             if (response.ok) {
                 response.json().then(data => {
                     // Current Weather
-                    $("#current_city").append('<img src="http://openweathermap.org/img/wn/' + data.current.weather[0].icon + '.png" alt="current weather icon" />')
+                    $("#current_city").append(moment.unix(data.current.dt).format(" (DD/MM/YYYY)") + '<img src="http://openweathermap.org/img/wn/' + data.current.weather[0].icon + '.png" alt="current weather icon" />')
                     $("#current_temp").html(data.current.temp);
                     $("#current_wind").html(data.current.wind_speed);
                     $("#current_humidity").html(data.current.humidity);
@@ -62,11 +62,11 @@ function getWeather(lat, lon) {
                     $(".day").each(function (index) {
                         let icon = data.daily[index + 1].weather[0].icon;
                         $(this).html(
-                            "<ul><li><h4>" + moment.unix(data.daily[index + 1].dt).format("DD/MM/YYYY") + "</h4></li>" +
-                            '<li><img src="http://openweathermap.org/img/wn/' + icon + '.png" alt = "weather icon" /></li>' +
-                            "<li>Temp: " + data.daily[index + 1].temp.day + "°C</li>" +
-                            "<li>Wind: " + data.daily[index + 1].wind_speed + "km/h</li>" +
-                            "<li>Humidity: " + data.daily[index + 1].humidity + "%</li></ul>"
+                            "<h4 class='my-2'>" + moment.unix(data.daily[index + 1].dt).format("DD/MM/YYYY") + "</h4>" +
+                            '<img src="http://openweathermap.org/img/wn/' + icon + '.png" alt = "weather icon" />' +
+                            "<div class='my-2'>Temp: " + data.daily[index + 1].temp.day + "°C</div>" +
+                            "<div class='my-2'>Wind: " + data.daily[index + 1].wind_speed + "km/h</div>" +
+                            "<div class='my-2'>Humidity: " + data.daily[index + 1].humidity + "%</div>"
                         );
                     })
                 })
@@ -123,8 +123,8 @@ $("#btnSearch").on("click", function () {
 
 // Clear the localstorage/search history
 $("#clearHistory").on("click", function () {
-    if (confirm("Are you sure you want to clear the history?")){
-    localStorage.removeItem("Weather-Dashboard");
+    if (confirm("Are you sure you want to clear the history?")) {
+        localStorage.removeItem("Weather-Dashboard");
         $("#searchHistory").html("");
     };
 });

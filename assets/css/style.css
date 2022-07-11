@@ -1,11 +1,10 @@
-.day{
-    margin:2px;
+header{
+    background: linear-gradient(to right, #4d88ff, #2d004d);
 }
 
-ul li{
-    list-style-type:none;
-    margin-top: 1px;
-    margin-bottom: 1px;
+.day{
+    margin:2px;
+    background: #274050;
 }
 
 button {
@@ -13,6 +12,6 @@ button {
     margin-bottom:5px;
 }
 
-.current_UV{
-    border-radius: 20%;
+div{
+    font-weight: bold;
 }
