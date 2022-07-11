@@ -1,7 +1,7 @@
 # Weather-Dashboard
 
-* Github Repository: 
-* Github Deployment: 
+* Github Repository: https://github.com/Alexander-Perry/Weather-Dashboard
+* Github Deployment: https://alexander-perry.github.io/Weather-Dashboard/
 
 ## User Story
 * AS A traveler
@@ -26,3 +26,5 @@
 * Bootstrap
 * Moment.js
 * OpenWeather OneCall API - https://openweathermap.org/api/one-call-api
+
+![_C__Users_alex_Assignments_Weather%20Dashboard_index html](https://user-images.githubusercontent.com/102524579/178266422-c936ab76-3cd0-4978-b2ab-6f9b1d955fbf.png)
